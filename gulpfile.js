@@ -35,6 +35,7 @@ gulp.task('doc', function () {
 
 gulp.task('lint', function () {
 	return gulp.src(scripts)
-		.pipe.(jshint())
-		.pipe(jshint.reporter('default'));
+		.pipe(jshint())
+		.pipe(jshint.reporter('gulp-jshint-file-reporter', {verbose: true, filename: __dirname + '/lint.log'}))
+		.pipe(jshint.reporter('fail'));
 });
