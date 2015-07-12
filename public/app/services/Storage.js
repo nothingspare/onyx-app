@@ -1,3 +1,10 @@
+/**
+ * A local storage wrapper
+ *
+ * @module Services
+ * @submodule Storage
+ * @class Forgot
+ */
 Application.service('Storage', [
 	function () {
 		var Module = {

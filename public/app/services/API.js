@@ -1,4 +1,11 @@
-Application.service('api', [
+/**
+ * An API wrapping service
+ *
+ * @module Services
+ * @submodule API 
+ * @class API
+ */
+Application.service('API', [
 	'$http', '$q', 'Config',
 	function ($http, $q, Config) {
 		var Module = {
