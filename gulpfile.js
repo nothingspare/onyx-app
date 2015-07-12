@@ -3,6 +3,7 @@ var concat = require('gulp-concat');
 var inject = require('gulp-inject');
 var yuidoc = require('gulp-yuidoc');
 var jshint = require('gulp-jshint');
+var karma = require('gulp-karma');
 
 
 var scripts = [
@@ -11,6 +12,10 @@ var scripts = [
 		'./public/app/filters/*.js',
 		'./public/app/directives/*.js',
 		'./public/app/controllers/*.js',
+	];
+
+var unitTests = [
+		'./tests/app/karma/services/*.spec.js'
 	];
 
 gulp.task('concat', function () {
@@ -38,4 +43,15 @@ gulp.task('lint', function () {
 		.pipe(jshint())
 		.pipe(jshint.reporter('gulp-jshint-file-reporter', {verbose: true, filename: __dirname + '/lint.log'}))
 		.pipe(jshint.reporter('fail'));
+});
+
+gulp.task('test', function () {
+	return gulp.src(unitTests)
+		.pipe(karma({
+			configFile: 'karma.conf.js',
+			action: 'run'
+		}))
+		.on('error', function(error) {
+			throw error;
+		});
 });
