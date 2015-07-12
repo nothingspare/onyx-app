@@ -1,0 +1,26 @@
+{
+  "name": "jabfu",
+  "version": "0.2.0",
+  "description": "jQuery, AngularJS, Bootstrap, Font-Awesome, &amp; Underscore",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nothingspare/jabfu.git"
+  },
+  "author": "nothingspare",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nothingspare/jabfu/issues"
+  },
+  "homepage": "https://github.com/nothingspare/jabfu",
+  "devDependencies": {
+    "express": "^4.13.1",
+    "gulp": "^3.9.0"
+  }
+}
