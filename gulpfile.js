@@ -1,6 +1,8 @@
 var gulp = require('gulp');
 var concat = require('gulp-concat');
 var inject = require('gulp-inject');
+var yuidoc = require('gulp-yuidoc');
+var jshint = require('gulp-jshint');
 
 
 var scripts = [
@@ -23,4 +25,16 @@ gulp.task('inject', function () {
 
 	return target.pipe(inject(sources, {ignorePath: 'public/', addRootSlash: false}))
 		.pipe(gulp.dest('./'));
+});
+
+gulp.task('doc', function () {
+	return gulp.src(scripts)
+		.pipe(yuidoc())
+		.pipe(gulp.dest('./docs'));
+});
+
+gulp.task('lint', function () {
+	return gulp.src(scripts)
+		.pipe.(jshint())
+		.pipe(jshint.reporter('default'));
 });
