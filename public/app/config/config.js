@@ -5,6 +5,6 @@
  */
 Application.constant('Config', {
 	name: 'app',
-	endpoint: 'http://echo.jsontest.com/key/value',
+	endpoint: 'http://localhost:1337',
 	headers: {}
 });

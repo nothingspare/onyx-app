@@ -21,7 +21,7 @@ Application.service('API', [
 			},
 			post: function (path, data, config) {
 				//handle empty data object
-				if (angular.isObject(data)) {
+				if (!angular.isObject(data)) {
 					var deferred = $q.defer();
 					deferred.reject('No data passed to request');
 					return deferred.promise;
@@ -39,7 +39,7 @@ Application.service('API', [
 			},
 			put: function (path, data, config) {
 				//handle empty data object
-				if (angular.isObject(data)) {
+				if (!angular.isObject(data)) {
 					var deferred = $q.defer();
 					deferred.reject('No data passed to request');
 					return deferred.promise;

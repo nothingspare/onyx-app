@@ -1,0 +1,78 @@
+/* MARGIN */
+.margin-15 { margin: 15px; }
+
+/* SIZING */
+.max-tablet{ max-width: 768px; }
+
+/* HEADER */
+#header .navbar-toggle{ background-color: #fff; }
+#header .navbar-toggle:hover, .navbar-toggle:focus{ background-color: rgba(255,255,255, .8); }
+#header .icon-bar{ background-color: #2E8BCC; }
+
+/* FORMS */
+.form-box { max-width: 330px; margin: 0 auto; border: 1px solid #ccc; }
+.form-container{ margin: 15px; }
+
+/* MODAL */
+.modal-content > span.ng-scope{ margin: 15px; display: block; }
+
+/* CALENDAR GRID */
+.section .span_1_of_8 .btn { font-size: 12px; padding: 3px; margin: 2px 0;}
+	/*  SECTIONS  */
+	.section {
+		clear: both;
+		padding: 0px;
+		margin: 0px;
+	}
+
+	/*  COLUMN SETUP  */
+	.col {
+		display: block;
+		float:left;
+		margin: 1% 0 1% 0%;
+	}
+	.col:first-child { margin-left: 0; }
+
+	/*  GROUPING  */
+	.group:before,
+	.group:after { content:""; display:table; }
+	.group:after { clear:both;}
+	.group { zoom:1; /* For IE 6/7 */ }
+	/*  GRID OF EIGHT  */
+	.span_8_of_8 {
+		width: 100%;
+	}
+
+	.span_7_of_8 {
+	  	width: 87.5%;
+	}
+
+	.span_6_of_8 {
+	  	width: 75%;
+	}
+
+	.span_5_of_8 {
+	  	width: 62.5%;
+	}
+
+	.span_4_of_8 {
+	  	width: 50%;
+	}
+
+	.span_3_of_8 {
+	  	width: 37.5%;
+	}
+
+	.span_2_of_8 {
+	  	width: 25%;
+	}
+
+	.span_1_of_8 {
+	  	width: 12.5%;
+	}
+
+	/*  GO FULL WIDTH BELOW 480 PIXELS */
+	@media only screen and (max-width: 480px) {
+		.col {  margin: 1% 0 1% 0%; }
+		.span_1_of_8, .span_2_of_8, .span_3_of_8, .span_4_of_8, .span_5_of_8, .span_6_of_8, .span_7_of_8, .span_8_of_8 { width: 100%; }
+	}

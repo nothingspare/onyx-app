@@ -1,0 +1,30 @@
+<div class="col-md-12">
+	<h2>Locations</h2>
+	<div class="form-group">
+		<button class="btn btn-primary" type="button" ng-click="controls.add()">Add</button>
+		<button class="btn btn-default" type="button" ng-click="controls.showArchived()">Show Archived</button>
+	</div>
+	<div class="form-group">
+		<input type="text" class="form-control max-tablet" ng-model="data.filter" placeholder="Filter" />
+	</div>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<td>Handle</td>
+				<td>Name</td>
+				<td>City</td>
+				<td>ZIP</td>
+				<td>State</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="location in data.locations | filter:{$: data.filter}">
+				<td><a href="#/location/{{location.id}}">{{location.handle}}</a></td>
+				<td><a href="#/location/{{location.id}}">{{location.name}}</a></td>
+				<td>{{location.city}}</td>
+				<td>{{location.zip}}</td>
+				<td>{{location.state}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

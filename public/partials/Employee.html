@@ -1,0 +1,26 @@
+<div class="col-md-12">
+	<div class="form-group">
+		<a class="btn btn-default" type="button" href="#/employees"><i class="fa fa-arrow-circle-left"></i> Employees</a>
+	</div>
+	<h2>Edit Employee</h2>
+	<div class="form-group">
+		<input class="form-control" type="text" ng-model="data.employee.first_name" placeholder="First Name"/>
+	</div>
+	<div class="form-group">
+		<input class="form-control" type="text" ng-model="data.employee.last_name" placeholder="Last Name"/>
+	</div>
+	<div class="form-group">
+		<input class="form-control" type="text" ng-model="data.employee.phone" placeholder="Phone #"/>
+	</div>
+	<div class="form-group">
+		<input class="form-control" type="text" ng-model="data.employee.email" placeholder="E-mail"/>
+	</div>
+	<div class="form-group">
+		<input class="form-control" type="text" ng-model="data.employee.username" placeholder="Username"/>
+	</div>
+	<div class="form-group">
+		<button class="btn btn-primary" type="button" ng-click="controls.submit()">Update</button>
+	</div>
+
+	<div id="calendar"></div>
+</div>

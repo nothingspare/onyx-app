@@ -1,0 +1,19 @@
+<div class="margin-15">
+	<h2>Add Shift</h2>
+	<div class="form-group">
+		<select class="form-control" ng-options="employee.id as employee.username for employee in data.employees" ng-model="data.event.user_id"></select>
+	</div>
+	<div class="form-group">
+		<select class="form-control" ng-options="location.id as location.name for location in data.locations" ng-model="data.event.location_id"></select>
+	</div>
+	<div class="form-group">
+		<input class="form-control" type="text" ng-model="data.event.start_timestamp" placeholder="Start"/>
+	</div>
+	<div class="form-group">
+		<input class="form-control" type="text" ng-model="data.event.end_timestamp" placeholder="End"/>
+	</div>
+	<div class="form-group">
+		<button class="btn btn-default" type="button" ng-click="controls.cancel()">Cancel</button>
+		<button class="btn btn-primary" type="button" ng-click="controls.submit()">Save</button>
+	</div>
+</div>

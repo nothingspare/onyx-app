@@ -4,6 +4,7 @@ var inject = require('gulp-inject');
 var yuidoc = require('gulp-yuidoc');
 var jshint = require('gulp-jshint');
 var karma = require('gulp-karma');
+var todo = require('gulp-todo');
 
 
 var scripts = [
@@ -29,6 +30,12 @@ gulp.task('inject', function () {
 	var sources = gulp.src('./public/dest/application.js', {read: false});
 
 	return target.pipe(inject(sources, {ignorePath: 'public/', addRootSlash: false}))
+		.pipe(gulp.dest('./'));
+});
+
+gulp.task('todo', function () {
+	gulp.src('./public/app/**/*.js')
+		.pipe(todo())
 		.pipe(gulp.dest('./'));
 });
 

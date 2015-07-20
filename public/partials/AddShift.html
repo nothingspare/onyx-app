@@ -1,0 +1,92 @@
+<div class="margin-15">
+	<h2>Shift</h2>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3">
+				<label>Start</label> <timepicker  ng-model="data.date.start" class="well well-sm"></timepicker>
+			</div>
+			<div class="col-md-3">
+				<label>End</label><timepicker  ng-model="data.date.end" class="well well-sm"></timepicker>
+			</div>
+		</div>
+	</div>
+	<table class="table table-striped">
+		<tbody>
+			<tr>
+				<td>
+					<input ng-true-value="1" ng-false-value="0" type="checkbox" ng-model="data.shift.sunday_shift"/>
+					<label>Sunday</label>
+					<br/>
+					<label>Default Employee Assignment</label>
+					<select class="form-control" ng-model="data.shift.sunday_user_id" ng-options="employee.id as employee.last_name + ', ' + employee.first_name for employee in data.employees">
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input ng-true-value="1" ng-false-value="0" type="checkbox" ng-model="data.shift.monday_shift"/>
+					<label>Monday</label>
+					<br/>
+					<label>Default Employee Assignment</label>
+					<select class="form-control" ng-model="data.shift.monday_user_id" ng-options="employee.id as employee.last_name + ', ' + employee.first_name for employee in data.employees">
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input ng-true-value="1" ng-false-value="0" type="checkbox" ng-model="data.shift.tuesday_shift"/>
+					<label>Tuesday</label>
+					<br/>
+					<label>Default Employee Assignment</label>
+					<select class="form-control" ng-model="data.shift.tuesday_user_id" ng-options="employee.id as employee.last_name + ', ' + employee.first_name for employee in data.employees">
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input ng-true-value="1" ng-false-value="0" type="checkbox" ng-model="data.shift.wednesday_shift"/>
+					<label>Wednesday</label>
+					<br/>
+					<label>Default Employee Assignment</label>
+					<select class="form-control" ng-model="data.shift.wednesday_user_id" ng-options="employee.id as employee.last_name + ', ' + employee.first_name for employee in data.employees">
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input ng-true-value="1" ng-false-value="0" type="checkbox" ng-model="data.shift.thursday_shift"/>
+					<label>Thursday</label>
+					<br/>
+					<label>Default Employee Assignment</label>
+					<select class="form-control" ng-model="data.shift.thursday_user_id" ng-options="employee.id as employee.last_name + ', ' + employee.first_name for employee in data.employees">
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input ng-true-value="1" ng-false-value="0" type="checkbox" ng-model="data.shift.friday_shift"/>
+					<label>Friday</label>
+					<br/>
+					<label>Default Employee Assignment</label>
+					<select class="form-control" ng-model="data.shift.friday_user_id" ng-options="employee.id as employee.last_name + ', ' + employee.first_name for employee in data.employees">
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input ng-true-value="1" ng-false-value="0" type="checkbox" ng-model="data.shift.saturday_shift"/>
+					<label>Saturday</label>
+					<br/>
+					<label>Default Employee Assignment</label>
+					<select class="form-control" ng-model="data.shift.saturday_user_id" ng-options="employee.id as employee.last_name + ', ' + employee.first_name for employee in data.employees">
+					</select>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	</div>
+	<div class="form-group container">
+		<button class="btn btn-default" type="button" ng-click="controls.cancel()">Cancel</button>
+		<button class="btn btn-primary" type="button" ng-click="controls.submit()">Save</button>
+	</div>
+</div>

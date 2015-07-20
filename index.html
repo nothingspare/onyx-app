@@ -2,8 +2,11 @@
 <html lang="en">
 <head>
 	<title></title>
+	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet"/>
 	<link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css"/>
+	<link type="text/css" rel="stylesheet" href="styles/metro-bootstrap.min.css"/>
 	<link type="text/css" rel="stylesheet" href="styles/font-awesome.min.css"/>
+	<link type="text/css" rel="stylesheet" href="styles/fullcalendar.min.css"/>
 
 	<link type="text/css" rel="stylesheet" href="styles/styles.css"/>
 
@@ -13,6 +16,9 @@
 
 	<script type="text/javascript" src="libs/vendor/angular-route.min.js"></script>
 	<script type="text/javascript" src="libs/vendor/bootstrap.min.js"></script>
+	<script type="text/javascript" src="libs/vendor/ui-bootstrap-tpls-0.13.0.min.js"></script>
+	<script type="text/javascript" src="libs/vendor/moment.min.js"></script>
+	<script type="text/javascript" src="libs/vendor/fullcalendar.min.js"></script>
 
 	<!-- inject:js -->
 	<script type="text/javascript" src="app/config/app.js"></script>
@@ -25,17 +31,117 @@
 	<!--script type="text/javascript" src="app/directives/.js"></script-->
 	<!--script type="text/javascript" src="app/controllers/.js"></script-->
 
+	<script type="text/javascript" src="app/filters/Digits.js"></script>
+
 	<script type="text/javascript" src="app/services/storage.js"></script>
-	<script type="text/javascript" src="app/services/api.js"></script>
+	<script type="text/javascript" src="app/services/API.js"></script>
+	<script type="text/javascript" src="app/services/Users.js"></script>
 
 	<script type="text/javascript" src="app/controllers/Login.js"></script>
+	<script type="text/javascript" src="app/controllers/Reset.js"></script>
+	<script type="text/javascript" src="app/controllers/Help.js"></script>
 	<script type="text/javascript" src="app/controllers/Forgot.js"></script>
+	<script type="text/javascript" src="app/controllers/MySchedule.js"></script>
+	<script type="text/javascript" src="app/controllers/Profile.js"></script>
+	<script type="text/javascript" src="app/controllers/Dashboard.js"></script>
+	<script type="text/javascript" src="app/controllers/Logout.js"></script>
+	<script type="text/javascript" src="app/controllers/Locations.js"></script>
+	<script type="text/javascript" src="app/controllers/Users.js"></script>
+	<script type="text/javascript" src="app/controllers/AddUser.js"></script>
+	<script type="text/javascript" src="app/controllers/AddLocation.js"></script>
+	<script type="text/javascript" src="app/controllers/Location.js"></script>
+	<script type="text/javascript" src="app/controllers/User.js"></script>
+	<script type="text/javascript" src="app/controllers/AddEvent.js"></script>
+	<script type="text/javascript" src="app/controllers/AddShift.js"></script>
+	<script type="text/javascript" src="app/controllers/EditShift.js"></script>
 	<!-- endinject-->
 
 </head>
-<body>
+<body id="body">
 	<div id="container" ng-app="Application">
-		<div id="view" ng-view></div>
+		<nav ng-if="state.isAuthenticated" id="header" class="navbar navbar-default">
+			<div ng-if="state.isAdmin" class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#unauth-nav" aria-expanded="false">
+						<span class="sr-only">Toggle Navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#/">Onyx Protect</a>
+				</div>
+				<div class="collapse navbar-collapse" id="unauth-nav">
+					<ul class="nav navbar-nav">
+						<li class="">
+							<a href="#/dashboard">Schedule</a>
+						</li>
+						<li class="">
+							<a href="#/employees">Employees</a>
+						</li>
+						<li class="">
+							<a href="#/locations">Locations</a>
+						</li>
+						<li class="">
+							<a href="#/profile">Profile</a>
+						</li>
+						<li class="">
+							<a href="#/logout">Logout</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div ng-if="!state.isAdmin" class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#unauth-nav" aria-expanded="false">
+						<span class="sr-only">Toggle Navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#/">Onyx Protect</a>
+				</div>
+				<div class="collapse navbar-collapse" id="unauth-nav">
+					<ul class="nav navbar-nav">
+						<li class="">
+							<a href="#/my-schedule">Schedule</a>
+						</li>
+						<li class="">
+							<a href="#/profile">Profile</a>
+						</li>
+						<li class="">
+							<a href="#/logout">Logout</a>
+						</li>
+						<li class="">
+							<a href="#/profile"><i class="fa fa-question-circle"></i></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<nav ng-if="!state.isAuthenticated" id="header" class="navbar navbar-default">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#unauth-nav" aria-expanded="false">
+						<span class="sr-only">Toggle Navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#/">Onyx Protect</a>
+				</div>
+				<div class="collapse navbar-collapse" id="unauth-nav">
+					<ul class="nav navbar-nav">
+						<li class="">
+							<a href="#/login">Login</a>
+						</li>
+						<li class="">
+							<a href="#/help"><i class="fa fa-question-circle"></i></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<div id="view" class="container" ng-view></div>
 	</div>
 </body>
 </html>
