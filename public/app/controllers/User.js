@@ -6,36 +6,31 @@
  * @class User
  */
 Application.controller('User', [
-	'$scope', '$location', '$rootScope', '$routeParams',
-	function ($scope, $location, $rootScope, $routeParams) {
+	'$scope', '$location', '$rootScope', '$routeParams', 'Users', 'API', 'Alertify',
+	function ($scope, $location, $rootScope, $routeParams, Users, API, Alertify) {
 		$scope.data = {};
 		$scope.controls = {};
+		$scope.params = {};
 
-		$scope.data.employee = $rootScope.employees[$routeParams.username];
-
-		$('#calendar').fullCalendar({
-			defaultView: 'agendaWeek',
-		    events: [
-		        {
-		            title  : 'event1',
-		            start  : '2015-07-14',
-		            editable: true
-		        },
-		        {
-		            title  : 'event2',
-		            start  : '2015-07-16',
-		            end    : '2015-07-18',
-		            allDay: false
-		        },
-		        {
-		            title  : 'event3',
-		            start  : '2015-07-09T12:30:00',
-		            allDay : false // will make the time show
-		        }
-		    ]
+		Users.index($rootScope.auth.user().hash).then(function (res) {
+			console.log(res);
+			$rootScope.employees = _.indexBy(res, 'username');
+			$scope.data.employee = $rootScope.employees[$routeParams.username];
+			$scope.params.employee = angular.copy($scope.data.employee);
 		});
 
-		//@todo controls.submit saves updates
+		$scope.controls.submit = function () {
+			var data = angular.copy($scope.data.employee);
+			if ($scope.params.employee.password == data.password) {
+				delete data.password;
+			}
+			API.post('/users/edit', data).then(function () {
+				Alertify.success('Saved');
+			}, function (error) {
+				console.log(error);
+				Alertify['error']('Error');
+			});
+		};
 		//@todo controls.datepicker
 		//@todo tooltip library
 		//@todo explode cells from server period requests, all complete hours get a div element

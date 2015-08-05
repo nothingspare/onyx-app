@@ -1,0 +1,21 @@
+<div class="margin-15">
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<td><strong>Employee</strong></td>
+				<td><strong>Hours</strong></td>
+				<td><strong>Last Viewed</strong></td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="employee in data.employees">
+				<td>{{employee.username}}</td>
+				<td>{{employee.total_hours | digits:1:"0"}}</td>
+				<td>{{employee.viewed | date: "MM/dd"}}</td>
+			</tr>
+			<!-- <tr>
+				<td></td>
+			</tr> -->
+		</tbody>
+	</table>
+</div>

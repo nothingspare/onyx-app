@@ -1,8 +1,11 @@
 <div class="col-md-12">
 	<h2>Schedule</h2>
 	<div class="form-group">
-		<button type="button" class="btn btn-primary" ng-click="controls.addEvent();">Add Event</button>
-		<button type="button" class="btn btn-default" ng-click="controls.addEvent();">Report Open Shifts</button>
+		<button type="button" class="btn btn-primary" ng-click="controls.reportHours();">Hours Report</button>
+		<button type="button" class="btn btn-success" ng-click="controls.notifyUpdates();">Notify Employees</button>
+	</div>
+	<div class="form-group">
+		<input type="text" class="form-control max-tablet" ng-model="data.filter" placeholder="Filter Locations" />
 	</div>
 	<div class="section group">
 		<div class="col span_1_of_8"> </div>
@@ -14,41 +17,69 @@
 		<div class="col span_1_of_8">Friday</div>
 		<div class="col span_1_of_8">Saturday</div>
 	</div>
-	<div class="section group" ng-repeat="location in locations">
-		<div class="col span_1_of_8">{{location.name}}</div>
+	<div class="section group even-{{$even}}" ng-repeat="location in locations | filter:{$: data.filter}">
+		<div class="col span_1_of_8"><div class="margin-0-5">{{location.name}}</div></div>
 		<div class="col span_1_of_8">
 			<button ng-if="shift.sunday_shift == 1" ng-click="controls.editShift(shift, 'sunday');" class="btn" ng-class="shift.sunday_user_id ? 'btn-success' : 'btn-danger'" ng-repeat="shift in shifts[location.id]">
 				{{shift.start_hour | digits:2:"0"}}:{{shift.start_minute | digits:2:"0"}} to {{shift.end_hour | digits:2:"0"}}:{{shift.end_minute | digits:2:"0"}}
+				<span>
+					<br/>
+					{{shift.sunday_user_id.last_name}}, {{shift.sunday_user_id.first_name}}
+				</span>
 			</button>
 		</div>
 		<div class="col span_1_of_8">
 			<button ng-if="shift.monday_shift == 1" ng-click="controls.editShift(shift, 'monday');" class="btn" ng-class="shift.monday_user_id ? 'btn-success' : 'btn-danger'" ng-repeat="shift in shifts[location.id]">
 				{{shift.start_hour | digits:2:"0"}}:{{shift.start_minute | digits:2:"0"}} to {{shift.end_hour | digits:2:"0"}}:{{shift.end_minute | digits:2:"0"}}
+				<span>
+					<br/>
+					{{shift.monday_user_id.last_name}}, {{shift.monday_user_id.first_name}}
+				</span>
 			</button>
 		</div>
 		<div class="col span_1_of_8">
 			<button ng-if="shift.tuesday_shift == 1" ng-click="controls.editShift(shift, 'tuesday');" class="btn" ng-class="shift.tuesday_user_id ? 'btn-success' : 'btn-danger'" ng-repeat="shift in shifts[location.id]">
 				{{shift.start_hour | digits:2:"0"}}:{{shift.start_minute | digits:2:"0"}} to {{shift.end_hour | digits:2:"0"}}:{{shift.end_minute | digits:2:"0"}}
+				<span>
+					<br/>
+					{{shift.tuesday_user_id.last_name}}, {{shift.tuesday_user_id.first_name}}
+				</span>
 			</button>
 		</div>
 		<div class="col span_1_of_8">
 			<button ng-if="shift.wednesday_shift == 1" ng-click="controls.editShift(shift, 'wednesday');" class="btn" ng-class="shift.wednesday_user_id ? 'btn-success' : 'btn-danger'" ng-repeat="shift in shifts[location.id]">
 				{{shift.start_hour | digits:2:"0"}}:{{shift.start_minute | digits:2:"0"}} to {{shift.end_hour | digits:2:"0"}}:{{shift.end_minute | digits:2:"0"}}
+				<span>
+					<br/>
+					{{shift.wednesday_user_id.last_name}}, {{shift.wednesday_user_id.first_name}}
+				</span>
 			</button>
 		</div>
 		<div class="col span_1_of_8">
 			<button ng-if="shift.thursday_shift == 1" ng-click="controls.editShift(shift, 'thursday');" class="btn" ng-class="shift.thursday_user_id ? 'btn-success' : 'btn-danger'" ng-repeat="shift in shifts[location.id]">
 				{{shift.start_hour | digits:2:"0"}}:{{shift.start_minute | digits:2:"0"}} to {{shift.end_hour | digits:2:"0"}}:{{shift.end_minute | digits:2:"0"}}
+				<span>
+					<br/>
+					{{shift.thursday_user_id.last_name}}, {{shift.thursday_user_id.first_name}}
+				</span>
 			</button>
 		</div>
 		<div class="col span_1_of_8">
 			<button ng-if="shift.friday_shift == 1" ng-click="controls.editShift(shift, 'friday');" class="btn" ng-class="shift.friday_user_id ? 'btn-success' : 'btn-danger'" ng-repeat="shift in shifts[location.id]">
 				{{shift.start_hour | digits:2:"0"}}:{{shift.start_minute | digits:2:"0"}} to {{shift.end_hour | digits:2:"0"}}:{{shift.end_minute | digits:2:"0"}}
+				<span>
+					<br/>
+					{{shift.friday_user_id.last_name}}, {{shift.friday_user_id.first_name}}
+				</span>
 			</button>
 		</div>
 		<div class="col span_1_of_8">
 			<button ng-if="shift.saturday_shift == 1" ng-click="controls.editShift(shift, 'saturday');" class="btn" ng-class="shift.saturday_user_id ? 'btn-success' : 'btn-danger'" ng-repeat="shift in shifts[location.id]">
 				{{shift.start_hour | digits:2:"0"}}:{{shift.start_minute | digits:2:"0"}} to {{shift.end_hour | digits:2:"0"}}:{{shift.end_minute | digits:2:"0"}}
+				<span>
+					<br/>
+					{{shift.saturday_user_id.last_name}}, {{shift.saturday_user_id.first_name}}
+				</span>
 			</button>
 		</div>
 	</div>

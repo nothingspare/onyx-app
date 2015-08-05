@@ -6,8 +6,8 @@
  * @class Location
  */
 Application.controller('Location', [
-	'$scope', '$location', '$rootScope', '$routeParams', 'API', '$modal', 'Users',
-	function ($scope, $location, $rootScope, $routeParams, API, $modal, Users) {
+	'$scope', '$location', '$rootScope', '$routeParams', 'API', '$modal', 'Users', 'Alertify',
+	function ($scope, $location, $rootScope, $routeParams, API, $modal, Users, Alertify) {
 		$scope.data = {};
 		$scope.controls = {};
 
@@ -50,6 +50,14 @@ Application.controller('Location', [
 		});
 		$scope.controls.refreshShifts();
 		//@todo controls.datepicker
-		//@todo controls.submit saves updates
+
+		$scope.controls.submit = function () {
+			API.post('/locations/edit', $scope.data.location).then(function (res) {
+				Alertify.success('Saved');
+			}, function (error) {
+				Alertify['error']('Error');
+				console.log(error);
+			});
+		};
 	}
 ]);

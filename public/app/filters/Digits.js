@@ -1,5 +1,6 @@
 Application.filter('digits', function () {
 	return function (input, length, pad) {
+		if (!input) { input = ""; }
 		input = input.toString();
 		if (input.length >= length) { return input; }
 		else {

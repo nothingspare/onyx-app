@@ -4,4 +4,4 @@
  * @module bootstrap
  * @class Application
  */
-var Application = angular.module('Application', ['ngRoute', 'ui.bootstrap']);
+var Application = angular.module('Application', ['ngRoute', 'ui.bootstrap', 'Alertify']);

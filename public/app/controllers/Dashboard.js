@@ -6,8 +6,8 @@
  * @class Dashboard
  */
 Application.controller('Dashboard', [
-	'$scope', '$location', '$rootScope', '$modal', 'API',
-	function ($scope, $location, $rootScope, $modal, API) {
+	'$scope', '$location', '$rootScope', '$modal', 'API', 'Users', 'Alertify',
+	function ($scope, $location, $rootScope, $modal, API, Users, Alertify) {
 		console.log('Dashboard page');
 
 		$scope.data = {};
@@ -19,6 +19,15 @@ Application.controller('Dashboard', [
 
 
 		API.get('/recurrent_events/index').success(function (res) {
+			angular.forEach(res, function (shift, i) {
+				if (shift.events && shift.events.length > 0) {
+					angular.forEach(shift.events, function (e, i ) {
+						Users.find(e.user_id).then(function (r) {
+							shift[e.day + '_user_id'] = r;
+						});
+					});
+				}
+			});
 			$scope.shifts = _.groupBy(res, function (shift) { return shift.location_id; });
 			API.get('/locations/index').success(function (res) {
 				$scope.locations = res;
@@ -31,8 +40,13 @@ Application.controller('Dashboard', [
 				templateUrl: 'partials/AddShift.html',
 				controller: 'EditShift',
 				resolve: {
-					shift: function () { return shift; }
+					shift: function () { return shift; },
+					day: function () { return day; }
 				}
+			});
+
+			modal.result.then(function () {
+				$scope.controls.refresh();
 			});
 		};
 
@@ -50,37 +64,23 @@ Application.controller('Dashboard', [
 			});
 		};
 
+		$scope.controls.reportHours = function () {
+			var modal = $modal.open({
+				templateUrl: 'partials/report-hours-dashboard.html',
+				controller: 'ReportHours'
+			});
+		};
+		$scope.controls.notifyUpdates = function () {
+			Alertify.confirm('Are you sure you want to text, all active employees?').then(function () {
+				API.get('/users/textEveryone').success(function () {
+					Alertify.success('Text Message Dispatched');
+				});
+			});
+		};
+
 		//@todo controls.refresh -> requests events
 		$scope.controls.refresh = function () {
 
 		};
-
-		//@todo datepicker: select date
-		$scope.controls.datePicker = function () {
-
-		};
-
-		//@todo 7 day schedule viewer
-		$('#calendar').fullCalendar({
-			defaultView: 'agendaWeek',
-		    events: [
-		        {
-		            title  : 'event1',
-		            start  : '2015-07-14',
-		            editable: true
-		        },
-		        {
-		            title  : 'event2',
-		            start  : '2015-07-16',
-		            end    : '2015-07-18',
-		            allDay: false
-		        },
-		        {
-		            title  : 'event3',
-		            start  : '2015-07-09T12:30:00',
-		            allDay : false // will make the time show
-		        }
-		    ]
-		});
 	}
 ]);

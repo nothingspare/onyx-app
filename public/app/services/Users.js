@@ -28,6 +28,24 @@ Application.service('Users', [
 			return deferred.promise;
 		};
 
+		Module.find = function (id) {
+			var deferred = $q.defer();
+			var data = {};
+			API.post('/users/find', {id: id})
+				.success(function (res) {
+					angular.forEach(res, function (e) {
+						delete e['password'];
+						delete e['hash'];
+						delete e['created'];
+					});
+					data.employees = res;
+
+					deferred.resolve(data.employees[0]);
+				});
+
+			return deferred.promise;
+		}
+
 		return Module;
 	}
 ]);

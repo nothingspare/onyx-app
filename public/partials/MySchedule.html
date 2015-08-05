@@ -1,4 +1,106 @@
 <div class="col-md-12">
-	<h4>Welcome {{data.user.first_name}},</h4>
-	<div id="calendar"></div>
+	<h4>{{data.user.first_name}}'s Schedule</h4><button class="btn btn-default">Acknowledge Week {{data.week.start}} - {{data.week.end}}</button>
+	<hr />
+	<div class="container">
+		<div class="row employee-schedule-row">
+			<div class="col-sm-12 col-md-4 col-lg-1">
+				<h6>Sunday</h6>
+				<a
+					ng-if="data.days.sunday.sunday_user_id == data.user.id"
+					href="http://maps.google.com/?q={{data.locations[data.days.sunday.location_id].street_one}}, {{data.locations[data.days.sunday.location_id].city}} {{data.locations[data.days.sunday.location_id].state}} {{data.locations[data.days.sunday.location_id].zip}}"
+					class="btn btn-primary" target="_blank">
+						{{data.days.sunday.start_hour | digits:2:"0"}}:{{data.days.sunday.start_minute | digits:2:"0"}} to {{data.days.sunday.end_hour | digits:2:"0"}}:{{data.days.sunday.end_minute | digits:2:"0"}}
+						<span>
+							<br/>
+							{{data.locations[data.days.sunday.location_id].handle | limitTo : 12 : 0}}
+						</span>
+				</a>
+				<a ng-if="data.days.sunday.sunday_user_id != data.user.id" class="btn btn-default font-two-em font-light-gray">No Shift</a>
+			</div>
+			<div class="col-sm-12 col-md-4 col-lg-1">
+				<h6>Monday</h6>
+				<a
+					ng-if="data.days.monday.monday_user_id == data.user.id"
+					href="http://maps.google.com/?q={{data.locations[data.days.monday.location_id].street_one}}, {{data.locations[data.days.monday.location_id].city}} {{data.locations[data.days.monday.location_id].state}} {{data.locations[data.days.monday.location_id].zip}}"
+					class="btn btn-primary" target="_blank">
+						{{data.days.monday.start_hour | digits:2:"0"}}:{{data.days.monday.start_minute | digits:2:"0"}} to {{data.days.monday.end_hour | digits:2:"0"}}:{{data.days.monday.end_minute | digits:2:"0"}}
+						<span>
+							<br/>
+							{{data.locations[data.days.monday.location_id].handle | limitTo : 12 : 0}}
+						</span>
+				</a>
+				<a ng-if="data.days.monday.monday_user_id != data.user.id" class="btn btn-default font-two-em font-light-gray">No Shift</a>
+			</div>
+			<div class="col-sm-12 col-md-4 col-lg-1">
+				<h6>Tuesday</h6>
+				<a
+					ng-if="data.days.tuesday.tuesday_user_id == data.user.id"
+					href="http://maps.google.com/?q={{data.locations[data.days.tuesday.location_id].street_one}}, {{data.locations[data.days.tuesday.location_id].city}} {{data.locations[data.days.tuesday.location_id].state}} {{data.locations[data.days.tuesday.location_id].zip}}"
+					class="btn btn-primary" target="_blank">
+						{{data.days.tuesday.start_hour | digits:2:"0"}}:{{data.days.tuesday.start_minute | digits:2:"0"}} to {{data.days.tuesday.end_hour | digits:2:"0"}}:{{data.days.tuesday.end_minute | digits:2:"0"}}
+						<span>
+							<br/>
+							{{data.locations[data.days.tuesday.location_id].handle | limitTo : 12 : 0}}
+						</span>
+				</a>
+				<a ng-if="data.days.tuesday.tuesday_user_id != data.user.id" class="btn btn-default font-two-em font-light-gray">No Shift</a>
+			</div>
+			<div class="col-sm-12 col-md-4 col-lg-1">
+				<h6>Wednesday</h6>
+				<a
+					ng-if="data.days.wednesday.wednesday_user_id == data.user.id"
+					href="http://maps.google.com/?q={{data.locations[data.days.wednesday.location_id].street_one}}, {{data.locations[data.days.wednesday.location_id].city}} {{data.locations[data.days.wednesday.location_id].state}} {{data.locations[data.days.wednesday.location_id].zip}}"
+					class="btn btn-primary" target="_blank">
+						{{data.days.wednesday.start_hour | digits:2:"0"}}:{{data.days.wednesday.start_minute | digits:2:"0"}} to {{data.days.wednesday.end_hour | digits:2:"0"}}:{{data.days.wednesday.end_minute | digits:2:"0"}}
+						<span>
+							<br/>
+							{{data.locations[data.days.wednesday.location_id].handle | limitTo : 12 : 0}}
+						</span>
+				</a>
+				<a ng-if="data.days.wednesday.wednesday_user_id != data.user.id" class="btn btn-default font-two-em font-light-gray">No Shift</a>
+			</div>
+			<div class="col-sm-12 col-md-4 col-lg-1">
+				<h6>Thursday</h6>
+				<a
+					ng-if="data.days.thursday.thursday_user_id == data.user.id"
+					href="http://maps.google.com/?q={{data.locations[data.days.thursday.location_id].street_one}}, {{data.locations[data.days.thursday.location_id].city}} {{data.locations[data.days.thursday.location_id].state}} {{data.locations[data.days.thursday.location_id].zip}}"
+					class="btn btn-primary" target="_blank">
+						{{data.days.thursday.start_hour | digits:2:"0"}}:{{data.days.thursday.start_minute | digits:2:"0"}} to {{data.days.thursday.end_hour | digits:2:"0"}}:{{data.days.thursday.end_minute | digits:2:"0"}}
+						<span>
+							<br/>
+							{{data.locations[data.days.thursday.location_id].handle | limitTo : 12 : 0}}
+						</span>
+				</a>
+				<a ng-if="data.days.thursday.thursday_user_id != data.user.id" class="btn btn-default font-two-em font-light-gray">No Shift</a>
+			</div>
+			<div class="col-sm-12 col-md-4 col-lg-1">
+				<h6>Friday</h6>
+				<a
+					ng-if="data.days.friday.friday_user_id == data.user.id"
+					href="http://maps.google.com/?q={{data.locations[data.days.friday.location_id].street_one}}, {{data.locations[data.days.friday.location_id].city}} {{data.locations[data.days.friday.location_id].state}} {{data.locations[data.days.friday.location_id].zip}}"
+					class="btn btn-primary" target="_blank">
+						{{data.days.friday.start_hour | digits:2:"0"}}:{{data.days.friday.start_minute | digits:2:"0"}} to {{data.days.friday.end_hour | digits:2:"0"}}:{{data.days.friday.end_minute | digits:2:"0"}}
+						<span>
+							<br/>
+							{{data.locations[data.days.friday.location_id].handle | limitTo : 12 : 0}}
+						</span>
+				</a>
+				<a ng-if="data.days.friday.friday_user_id != data.user.id" class="btn btn-default font-two-em font-light-gray">No Shift</a>
+			</div>
+			<div class="col-sm-12 col-md-4 col-lg-1">
+				<h6>Saturday</h6>
+				<a
+					ng-if="data.days.saturday.saturday_user_id == data.user.id"
+					href="http://maps.google.com/?q={{data.locations[data.days.saturday.location_id].street_one}}, {{data.locations[data.days.saturday.location_id].city}} {{data.locations[data.days.saturday.location_id].state}} {{data.locations[data.days.saturday.location_id].zip}}"
+					class="btn btn-primary" target="_blank">
+						{{data.days.saturday.start_hour | digits:2:"0"}}:{{data.days.saturday.start_minute | digits:2:"0"}} to {{data.days.saturday.end_hour | digits:2:"0"}}:{{data.days.saturday.end_minute | digits:2:"0"}}
+						<span>
+							<br/>
+							{{data.locations[data.days.saturday.location_id].handle | limitTo : 12 : 0}}
+						</span>
+				</a>
+				<a ng-if="data.days.saturday.saturday_user_id != data.user.id" class="btn btn-default font-two-em font-light-gray">No Shift</a>
+			</div>
+		</div>
+	</div>
 </div>

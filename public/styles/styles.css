@@ -1,4 +1,7 @@
 /* MARGIN */
+.margin-5 { margin: 5px; }
+.margin-5-0 { margin: 5px 0px; }
+.margin-0-5 { margin: 0px 5px; }
 .margin-15 { margin: 15px; }
 
 /* SIZING */
@@ -9,6 +12,13 @@
 #header .navbar-toggle:hover, .navbar-toggle:focus{ background-color: rgba(255,255,255, .8); }
 #header .icon-bar{ background-color: #2E8BCC; }
 
+/* TYPOGRAPHY */
+.font-light-gray{ color: #ccc;}
+.font-two-em{ font-size: 2em; }
+
+/* TABLES */
+.even-true { background-color: #f0f0f0;}
+
 /* FORMS */
 .form-box { max-width: 330px; margin: 0 auto; border: 1px solid #ccc; }
 .form-container{ margin: 15px; }
@@ -17,6 +27,11 @@
 .modal-content > span.ng-scope{ margin: 15px; display: block; }
 
 /* CALENDAR GRID */
+@media (min-width: 1200px) {
+	.employee-schedule-row .col-lg-1{
+		width: 14% !important;
+	}
+}
 .section .span_1_of_8 .btn { font-size: 12px; padding: 3px; margin: 2px 0;}
 	/*  SECTIONS  */
 	.section {

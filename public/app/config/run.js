@@ -24,7 +24,7 @@ Application.run([
 					$location.path(Storage.get('route'));
 				}
 			}
-			if (route.$$route.allowRemember) {
+			if (route.$$route && route.$$route.allowRemember) {
 				Storage.put('route', $location.path());
 			}
 		});

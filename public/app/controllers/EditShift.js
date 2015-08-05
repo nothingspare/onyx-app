@@ -6,8 +6,8 @@
  * @class EditShift
  */
 Application.controller('EditShift', [
-	'$scope', '$location', '$rootScope', '$routeParams', 'API', '$modal', 'Users', '$modalInstance', 'shift',
-	function ($scope, $location, $rootScope, $routeParams, API, $modal, Users, $modalInstance, shift) {
+	'$scope', '$location', '$rootScope', '$routeParams', 'API', '$modal', 'Users', '$modalInstance', 'shift', 'day',
+	function ($scope, $location, $rootScope, $routeParams, API, $modal, Users, $modalInstance, shift, day) {
 		$scope.data = {
 			shift: shift,
 			date: {
