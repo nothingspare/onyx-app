@@ -6,12 +6,14 @@
  * @class AddShift
  */
 Application.controller('AddShift', [
-	'$scope', '$location', '$rootScope', '$routeParams', 'API', '$modal', 'Users', '$modalInstance',
-	function ($scope, $location, $rootScope, $routeParams, API, $modal, Users, $modalInstance) {
+	'$scope', '$location', '$rootScope', '$routeParams', 'API', '$modal', 'Users', '$modalInstance', 'shift',
+	function ($scope, $location, $rootScope, $routeParams, API, $modal, Users, $modalInstance, shift) {
+		$scope.params = {
+			submitEndpoint: '/recurrent_events/add'
+		};
 		$scope.data = {
 			shift: {
 				location_id: $routeParams.id,
-				user_id: null,
 				sunday_shift: 1,
 				monday_shift: 1,
 				tuesday_shift: 1,
@@ -27,6 +29,16 @@ Application.controller('AddShift', [
 		};
 		$scope.controls = {};
 
+		if (angular.isObject(shift)) {
+			shift = _.each(shift, function (element, index) {
+				if (_.contains(['sunday_user_id', 'monday_user_id', 'tuesday_user_id', 'wednesday_user_id', 'thursday_user_id', 'friday_user_id', 'saturday_user_id'], index)) {
+					shift[index] = element.id;
+				}
+			});
+			$scope.data.shift = shift;
+			console.log($scope.data.shift);
+			$scope.params.submitEndpoint = '/recurrent_events/edit';
+		}
 
 		$scope.controls.submit = function () {
 			$scope.data.shift.start_hour = moment($scope.data.date.start).hour();
@@ -38,7 +50,7 @@ Application.controller('AddShift', [
 			var user = $rootScope.auth.user();
 
 			console.log($scope.data);
-			API.post('/recurrent_events/add', $scope.data.shift)
+			API.post($scope.params.submitEndpoint, $scope.data.shift)
 				.success(function (res) {
 					//@todo success modal
 					

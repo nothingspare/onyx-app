@@ -19,10 +19,27 @@ Application.controller('Location', [
 				});
 		};
 
+		$scope.controls.editShift = function (shift) {
+			var modal = $modal.open({
+				templateUrl: 'partials/AddShift.html',
+				controller: 'AddShift',
+				resolve: {
+					shift: function () { return shift; }
+				}
+			});
+
+			modal.result.then(function () {
+				$scope.controls.refreshShifts();
+			});
+		};
+
 		$scope.controls.addShift = function () {
 			var modal = $modal.open({
 				templateUrl: 'partials/AddShift.html',
 				controller: 'AddShift',
+				resolve: {
+					shift: function () { return false; }
+				}
 			});
 
 			modal.result.then(function (obj) {

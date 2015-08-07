@@ -6,8 +6,8 @@
  * @class Dashboard
  */
 Application.controller('Dashboard', [
-	'$scope', '$location', '$rootScope', '$modal', 'API', 'Users', 'Alertify',
-	function ($scope, $location, $rootScope, $modal, API, Users, Alertify) {
+	'$scope', '$location', '$rootScope', '$modal', 'API', 'Users', 'Alertify', '$route',
+	function ($scope, $location, $rootScope, $modal, API, Users, Alertify, $route) {
 		console.log('Dashboard page');
 
 		$scope.data = {};
@@ -35,13 +35,16 @@ Application.controller('Dashboard', [
 		});
 
 		$scope.controls.editShift = function (shift, day) {
-			console.log(day, shift);
+			//@todo popualte pickupdate according to the calendar dates expressed
+			var pickupdate = moment().day(day);
+
 			var modal = $modal.open({
 				templateUrl: 'partials/AddShift.html',
 				controller: 'EditShift',
 				resolve: {
 					shift: function () { return shift; },
-					day: function () { return day; }
+					day: function () { return day; },
+					pickupDate: function () { return pickupdate; }
 				}
 			});
 
@@ -80,7 +83,7 @@ Application.controller('Dashboard', [
 
 		//@todo controls.refresh -> requests events
 		$scope.controls.refresh = function () {
-
+			$route.reload();
 		};
 	}
 ]);

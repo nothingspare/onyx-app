@@ -8,12 +8,14 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>
+					<td> </td>
 					<td>Start</td>
 					<td>End</td>
 				</tr>
 			</thead>
 			<tbody>
 				<tr ng-repeat="shift in data.shifts">
+					<td><button class="btn btn-sm btn-default" ng-click="controls.editShift(shift);"><i class="fa fa-pencil-square-o"></i> Edit Shift</button></td>
 					<td>{{shift.start_hour}}:{{shift.start_minute | digits:2:"0"}}</td>
 					<td>{{shift.end_hour}}:{{shift.end_minute | digits:2:"0"}}</td>
 				</tr>
