@@ -13,7 +13,8 @@ Application.controller('EditShift', [
 			date: {
 				start: moment().hour(shift.start_hour).minute(shift.start_minute).second(0).toDate(),
 				end: moment().hour(shift.end_hour).minute(shift.end_minute).second(0).toDate()
-			}
+			},
+			user: null
 		};
 		$scope.controls = {};
 		$scope.params = {
@@ -40,6 +41,10 @@ Application.controller('EditShift', [
 
 		var originalShift = angular.copy(shift);
 
+		$scope.$watch('data.shift.' + day + '_user_id', function (current) {
+			console.log(current);
+		});
+
 		$scope.controls.assignPickupShift = function () {
 			if (!$scope.data.user) { return; }
 
@@ -48,10 +53,8 @@ Application.controller('EditShift', [
 				replacing_user = originalShift[day + '_user_id'].id;
 			}
 
-			var user_id = $scope.data.user;
-			if (angular.isObject($scope.data.user)) {
-				user_id = $scope.data.user.id;
-			}
+			var user_id = $scope.data.shift[day + '_user_id'];
+			console.log($scope.data.shift[day + '_user_id'])
 
 			var data = {
 				recurrent_event_id: $scope.data.shift.id,
@@ -68,7 +71,6 @@ Application.controller('EditShift', [
 			}, function () {
 				Alertify['error']('Error');
 			});
-			console.log(day, data);
 		};
 
 		$scope.controls.assignSingleShiftInstance = function (day) {

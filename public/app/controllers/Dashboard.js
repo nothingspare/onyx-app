@@ -39,7 +39,7 @@ Application.controller('Dashboard', [
 			var pickupdate = moment().day(day);
 
 			var modal = $modal.open({
-				templateUrl: 'partials/AddShift.html',
+				templateUrl: 'partials/EditShift.html',
 				controller: 'EditShift',
 				resolve: {
 					shift: function () { return shift; },

@@ -1,0 +1,93 @@
+<div class="margin-15">
+	<h2>Shift</h2>
+	<div class="container" ng-if="!params.edit">
+		<div class="row">
+			<div class="col-md-3">
+				<label>Start</label> <timepicker  ng-model="data.date.start" class="well well-sm"></timepicker>
+			</div>
+			<div class="col-md-3">
+				<label>End</label><timepicker  ng-model="data.date.end" class="well well-sm"></timepicker>
+			</div>
+		</div>
+	</div>
+	<table class="table table-striped">
+		<tbody>
+			<tr ng-hide="params.exclude.sunday">
+				<td>
+					<input ng-if="!params.edit" ng-true-value="1" ng-false-value="0" type="checkbox" ng-model="data.shift.sunday_shift"/>
+					<label>Sunday</label>
+					<br/>
+					<label>Default Employee Assignment</label>
+					<select class="form-control" ng-model="data.user" ng-options="employee.id as employee.last_name + ', ' + employee.first_name for employee in data.employees">
+					</select>
+				</td>
+			</tr>
+			<tr ng-hide="params.exclude.monday">
+				<td>
+					<input ng-if="!params.edit" ng-true-value="1" ng-false-value="0" type="checkbox" ng-model="data.shift.monday_shift"/>
+					<label>Monday</label>
+					<br/>
+					<label>Default Employee Assignment</label>
+					<select class="form-control" ng-model="data.user" ng-options="employee.id as employee.last_name + ', ' + employee.first_name for employee in data.employees">
+					</select>
+				</td>
+			</tr>
+			<tr ng-hide="params.exclude.tuesday">
+				<td>
+					<input ng-if="!params.edit" ng-true-value="1" ng-false-value="0" type="checkbox" ng-model="data.shift.tuesday_shift"/>
+					<label>Tuesday</label>
+					<br/>
+					<label>Default Employee Assignment</label>
+					<select class="form-control" ng-model="data.user" ng-options="employee.id as employee.last_name + ', ' + employee.first_name for employee in data.employees">
+					</select>
+				</td>
+			</tr>
+			<tr ng-hide="params.exclude.wednesday">
+				<td>
+					<input ng-if="!params.edit" ng-true-value="1" ng-false-value="0" type="checkbox" ng-model="data.shift.wednesday_shift"/>
+					<label>Wednesday</label>
+					<br/>
+					<label>Default Employee Assignment</label>
+					<select class="form-control" ng-model="data.user" ng-options="employee.id as employee.last_name + ', ' + employee.first_name for employee in data.employees">
+					</select>
+				</td>
+			</tr>
+			<tr ng-hide="params.exclude.thursday">
+				<td>
+					<input ng-if="!params.edit" ng-true-value="1" ng-false-value="0" type="checkbox" ng-model="data.shift.thursday_shift"/>
+					<label>Thursday</label>
+					<br/>
+					<label>Default Employee Assignment</label>
+					<select class="form-control" ng-model="data.user" ng-options="employee.id as employee.last_name + ', ' + employee.first_name for employee in data.employees">
+					</select>
+				</td>
+			</tr>
+			<tr ng-hide="params.exclude.friday">
+				<td>
+					<input ng-if="!params.edit" ng-true-value="1" ng-false-value="0" type="checkbox" ng-model="data.shift.friday_shift"/>
+					<label>Friday</label>
+					<br/>
+					<label>Default Employee Assignment</label>
+					<select class="form-control" ng-model="data.user" ng-options="employee.id as employee.last_name + ', ' + employee.first_name for employee in data.employees">
+					</select>
+				</td>
+			</tr>
+			<tr ng-hide="params.exclude.saturday">
+				<td>
+					<input ng-if="!params.edit" ng-true-value="1" ng-false-value="0" type="checkbox" ng-model="data.shift.saturday_shift"/>
+					<label>Saturday</label>
+					<br/>
+					<label>Default Employee Assignment</label>
+					<select class="form-control" ng-model="data.user" ng-options="employee.id as employee.last_name + ', ' + employee.first_name for employee in data.employees">
+					</select>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	</div>
+	<div class="form-group container">
+		<button class="btn btn-default" type="button" ng-click="controls.cancel()">Cancel</button>
+		<button ng-if="!params.edit" class="btn btn-primary" type="button" ng-click="controls.submit()">Save</button>
+		<button ng-if="params.edit" class="btn btn-primary" type="button" ng-click="controls.assignPickupShift()">Assign Pickup Shift</button>
+	</div>
+</div>
